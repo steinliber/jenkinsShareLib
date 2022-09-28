@@ -1,16 +1,7 @@
 #!/usr/bin/env groovy
 
-/* notifyDingDing.groovy
+/* notify.groovy
 This package is used for dingding notification in jenkins pipeline
-input params is
-robotID: the rebot id created by jenkins config
-folder: jenkins folder name
-jobName: jenkins job name
-branch: repo branch
-jenkinsURL: jenkins address in repo
-notifyUser: notify users in dingding
-statusMessage: dingding status message
-headMessage: dingding head message
 */
 
 def getChangeString() {
@@ -32,6 +23,18 @@ def getChangeString() {
     return (changeString)
 }
 
+/*
+send notifucation to dingding
+input params =>
+robotID: the rebot id created by jenkins config
+folder: jenkins folder name
+jobName: jenkins job name
+branch: repo branch
+jenkinsURL: jenkins address in repo
+notifyUser: notify users in dingding
+statusMessage: dingding status message
+headMessage: dingding head message
+*/
 def dingding(String robotID, String folder, String jobName, String branch, String jenkinsURL, String notifyUser, String statusMessage, String headMessage){
     String changeString = getChangeString()
     echo "${changeString}"
