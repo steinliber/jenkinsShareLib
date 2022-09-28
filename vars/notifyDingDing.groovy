@@ -47,7 +47,7 @@ def call(String robotID, String notifyUser, String jenkinsURL, String branch, St
               "[应用Jenkins地址](${jenkinsURL}/${folder}/job/${jobName}/)"
 
           ],
-          at: atUsers
+          at: atUsers.toString()
         )
     }
 }
