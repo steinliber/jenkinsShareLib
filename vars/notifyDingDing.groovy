@@ -2,6 +2,15 @@
 
 /* notifyDingDing.groovy
 This package is used for dingding notification in jenkins pipeline
+input params is
+robotID: the rebot id created by jenkins config
+folder: jenkins folder name
+jobName: jenkins job name
+branch: repo branch
+jenkinsURL: jenkins address in repo
+notifyUser: notify users in dingding
+statusMessage: dingding status message
+headMessage: dingding head message
 */
 
 def getChangeString() {
@@ -23,7 +32,7 @@ def getChangeString() {
     return (changeString)
 }
 
-def call(String robotID, String notifyUser, String jenkinsURL, String branch, String jobName, String folder, String statusMessage, String headMessage){
+def call(String robotID, String folder, String jobName, String branch, String jenkinsURL, String notifyUser, String statusMessage, String headMessage){
     String changeString = getChangeString()
     echo "${changeString}"
     List<String> atUsers = [] as String[]
@@ -32,7 +41,7 @@ def call(String robotID, String notifyUser, String jenkinsURL, String branch, St
     }
     wrap([$class: 'BuildUser']){
          dingtalk (
-          robot: '${robotID}',
+          robot: "${robotID}",
           type: 'MARKDOWN',
           title: "${jobName}[${branch}]构建通知",
           text: [
