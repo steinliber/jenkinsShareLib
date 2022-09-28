@@ -25,6 +25,7 @@ def getChangeString() {
 
 def call(String robotID, String notifyUser, String jenkinsURL, String branch, String jobName, String folder, String statusMessage, String headMessage){
     String changeString = getChangeString()
+    echo "${changeString}"
     wrap([$class: 'BuildUser']){
          dingtalk (
           robot: '${robotID}',
@@ -34,7 +35,7 @@ def call(String robotID, String notifyUser, String jenkinsURL, String branch, St
               "# $headMessage",
               "# 构建详情",
               "- 构建变更: ${changeString}"
-              "- 构建结果:${statusMessage}",
+              "- 构建结果: ${statusMessage}",
               "- 构建人: **${env.BUILD_USER}**",
               "- 持续时间: ${currentBuild.durationString}",
               "- 构建日志: [日志](${env.BUILD_URL}console)",
