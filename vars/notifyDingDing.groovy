@@ -34,7 +34,7 @@ def call(String robotID, String notifyUser, String jenkinsURL, String branch, St
           text: [
               "# $headMessage",
               "# 构建详情",
-              "- 构建变更: ${changeString}"
+              "- 构建变更: ${changeString}",
               "- 构建结果: ${statusMessage}",
               "- 构建人: **${env.BUILD_USER}**",
               "- 持续时间: ${currentBuild.durationString}",
