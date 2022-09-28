@@ -32,7 +32,7 @@ def getChangeString() {
     return (changeString)
 }
 
-def call(String robotID, String folder, String jobName, String branch, String jenkinsURL, String notifyUser, String statusMessage, String headMessage){
+def dingding(String robotID, String folder, String jobName, String branch, String jenkinsURL, String notifyUser, String statusMessage, String headMessage){
     String changeString = getChangeString()
     echo "${changeString}"
     List<String> atUsers = [] as String[]
