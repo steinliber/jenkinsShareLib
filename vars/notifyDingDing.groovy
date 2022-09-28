@@ -26,6 +26,10 @@ def getChangeString() {
 def call(String robotID, String notifyUser, String jenkinsURL, String branch, String jobName, String folder, String statusMessage, String headMessage){
     String changeString = getChangeString()
     echo "${changeString}"
+    String[] atUsers = []
+    if (notifyUser != null && notifyUser != "") {
+        atUsers = notifyUser.split(",")
+    }
     wrap([$class: 'BuildUser']){
          dingtalk (
           robot: '${robotID}',
@@ -43,7 +47,7 @@ def call(String robotID, String notifyUser, String jenkinsURL, String branch, St
               "[应用Jenkins地址](${jenkinsURL}/${folder}/job/${jobName}/)"
 
           ],
-          at: ["${notifyUser}"]
+          at: atUsers
         )
     }
 }
