@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 
-def buildDockerImage(String imageAddress="moby/buildkit:master") {
+def pushDockerImage(String imageAddress="moby/buildkit:master") {
     String imageRepositoryURL = Config.imageRepoSettings.get("image_repository")
     if (imageRepositoryURL) {
         String imageName = Config.imageRepoSettings.get("image_name")
