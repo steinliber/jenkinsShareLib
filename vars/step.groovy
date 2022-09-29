@@ -9,9 +9,9 @@ def getProject() {
 
 def buildDockerImage(String imageAddress="moby/buildkit:master") {
     stage("Build Docker image") {
-        String dockerImageSecretName = Config.generalSettings.docker_image_auth_secret_name
+        String dockerImageSecretName = Config.generalSettings.get("docker_image_auth_secret_name")
         echo "----------> ${dockerImageSecretName}"
-        if (dockerImageSecretName != "") {
+        if (dockerImageSecretName) {
             podTemplate(containers: [
                     containerTemplate(name: 'buildkit', image: "${imageAddress}", ttyEnabled: true, privileged: true),
             ], volumes: [
