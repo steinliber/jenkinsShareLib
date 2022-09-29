@@ -1,5 +1,9 @@
-def configGeneral(Map args=[:]){
-    defaultSettings()
+def configImageRepo(Map imageRepoConfig=[:]) {
+    Config.imageRepoConfig = defaultImageRepoSettings() + imageRepoConfig
+}
+
+def configGeneral(Map congfig=[:]) {
+    defaultImageRepoSettings()
 }
 
 def configNotifyDingDing(String robotID, String atUser) {
@@ -14,10 +18,18 @@ def configNotifyDingDing(String robotID, String atUser) {
 def defaultSettings() {
     Config.generalSettings  = [
         repo_type: "",
-        docker_image_auth_secret_name: "",
     ]
     Config.stepSettings = [
         skip_test: false,
+    ]
+}
+
+def defaultImageRepoSettings() {
+    return [
+        auth_secret_name: "",
+        image_repository: "",
+        defaultTag: "latest",
+        versionMethod: "commitID"
     ]
 }
 

@@ -5,4 +5,6 @@ class Config implements Serializable {
     static Map notifySettings = [:]
 
     static Map stepSettings = [:]
+
+    static Map imageRepoSettings = [:]
 }
