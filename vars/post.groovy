@@ -3,7 +3,7 @@
 def success() {
     if(notifySettings) {
         String successHeadMsg = "✅✅✅✅✅✅✅✅✅"
-        String successStatusMsg = "构建成功✅""
+        String successStatusMsg = "构建成功✅"
         notify.send(successHeadMsg, successStatusMsg)
     }
 }
