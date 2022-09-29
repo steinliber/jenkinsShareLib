@@ -35,18 +35,18 @@ notifyUser: notify users in dingding
 statusMessage: dingding status message
 headMessage: dingding head message
 */
-def dingding(String robotID, String folder, String jobName, String branch, String jenkinsURL, String notifyUser, String statusMessage, String headMessage, Integer _timeout=60){
+def dingding(String statusMessage, String headMessage, Integer _timeout=60){
     String changeString = getChangeString()
     String buildUser = variable.buildUserName()
     List<String> atUsers = [] as String[]
     if (notifyUser != null && notifyUser != "") {
-        atUsers = notifyUser.split(",") as String[]
+        atUsers = Config.notifySettings.atUser.split(",") as String[]
     }
     timeout(time: _timeout, unit: 'SECONDS') {
              dingtalk (
-              robot: "${robotID}",
+              robot: '${Config.notifySettings.robotID}',
               type: 'MARKDOWN',
-              title: "${jobName}[${branch}]构建通知",
+              title: "${env.JOB_NAME}[${env.BRANCH_NAME}]构建通知",
               text: [
                   "# $headMessage",
                   "# 构建详情",
@@ -56,7 +56,7 @@ def dingding(String robotID, String folder, String jobName, String branch, Strin
                   "- 持续时间: ${currentBuild.durationString}",
                   "- 构建日志: [日志](${env.BUILD_URL}console)",
                   "# Jenkins链接",
-                  "[应用Jenkins地址](${jenkinsURL}/${folder}/job/${jobName}/)"
+                  "[应用Jenkins地址](${env.JOB_URL})"
               ],
               at: atUsers
             )
