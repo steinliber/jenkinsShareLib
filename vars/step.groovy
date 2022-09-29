@@ -18,7 +18,7 @@ def buildDockerImage(String imageAddress="moby/buildkit:master") {
     echo "----------> ${env.GIT_COMMIT}"
     switch (versionMethod) {
         case "commitID":
-            if env.GIT_COMMIT {
+            if (env.GIT_COMMIT) {
                 version = env.GIT_COMMIT.substring(0, 8)
             }
     }
