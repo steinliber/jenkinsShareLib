@@ -9,6 +9,7 @@ def testInMaven(String imageAddress="maven:3.8.1-jdk-8") {
                 node(POD_LABEL) {
                     container('maven') {
                         stage('run mvn test') {
+                            checkout scm
                             sh 'sleep 100000000'
                         }
                     }
