@@ -33,13 +33,14 @@ def dingding(String statusMessage, String headMessage, Integer _timeout=60){
     String changeString = getChangeString()
     String buildUser = variable.buildUserName()
     String notifyUser = Config.notifySettings.atUser
+    String robotID = Config.notifySettings.robotID
     List<String> atUsers = [] as String[]
     if (notifyUser != null && notifyUser != "") {
         atUsers = notifyUser.split(",") as String[]
     }
     timeout(time: _timeout, unit: 'SECONDS') {
              dingtalk (
-              robot: '${Config.notifySettings.robotID}',
+              robot: '${robotID}',
               type: 'MARKDOWN',
               title: "${env.JOB_NAME}[${env.BRANCH_NAME}]构建通知",
               text: [
