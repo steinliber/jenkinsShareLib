@@ -2,11 +2,11 @@ def configGeneral(Map args=[:]){
     defaultSettings()
 }
 
-def configNotifyDingDing(String robotID, String atUser, String notifyType) {
+def configNotifyDingDing(String notifyType, String robotID, String atUser) {
     Config.notifySettings = [
-        robotID: "${robotID}",
-        atUser: "${atUser}",
-        notifyType: "dingding"
+        robotID: robotID,
+        atUser: atUser,
+        notifyType: notifyType,
     ]
 }
 
