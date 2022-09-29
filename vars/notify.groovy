@@ -26,21 +26,16 @@ def getChangeString() {
 /*
 send notifucation to dingding
 input params =>
-robotID: the rebot id created by jenkins config
-folder: jenkins folder name
-jobName: jenkins job name
-branch: repo branch
-jenkinsURL: jenkins address in repo
-notifyUser: notify users in dingding
 statusMessage: dingding status message
 headMessage: dingding head message
 */
 def dingding(String statusMessage, String headMessage, Integer _timeout=60){
     String changeString = getChangeString()
     String buildUser = variable.buildUserName()
+    String notifyUser = Config.notifySettings.atUser
     List<String> atUsers = [] as String[]
     if (notifyUser != null && notifyUser != "") {
-        atUsers = Config.notifySettings.atUser.split(",") as String[]
+        atUsers = notifyUser.split(",") as String[]
     }
     timeout(time: _timeout, unit: 'SECONDS') {
              dingtalk (
