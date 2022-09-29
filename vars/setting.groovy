@@ -6,6 +6,7 @@ def configNotifyDingDing(String robotID, String atUser) {
     Config.notifySettings = [
         robotID: robotID,
         atUser: atUser,
+        notifyType: "dingding",
     ]
 }
 

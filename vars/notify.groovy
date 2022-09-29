@@ -22,13 +22,22 @@ def getChangeString() {
     }
     return (changeString)
 }
-
 /*
 send notifucation to dingding
 input params =>
 statusMessage: dingding status message
 headMessage: dingding head message
 */
+def send(String headMessage, String statusMessage) {
+    switch (Config.notifySettings.notifyType) {
+        case "dingding":
+            dingding(headMessage, statusMessage)
+            break
+        default:
+            throw new Exception("jenkins notify type ${Config.notifySettings.notifyType} doesn't support")
+    }
+}
+
 def dingding(String headMessage, String statusMessage, Integer _timeout=60){
     String changeString = getChangeString()
     String buildUser = variable.buildUserName()
