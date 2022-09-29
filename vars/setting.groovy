@@ -13,7 +13,8 @@ def configNotifyDingDing(String robotID, String atUser) {
 // config default settings
 def defaultSettings() {
     Config.generalSettings  = [
-        repo_type: ""
+        repo_type: "",
+        docker_image_auth_secret_name: "",
     ]
     Config.stepSettings = [
         skip_test: false,
