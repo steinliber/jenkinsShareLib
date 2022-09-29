@@ -12,7 +12,7 @@ def buildDockerImage(String imageAddress="moby/buildkit:master") {
         String dockerImageSecretName = Config.generalSettings.docker_image_auth_secret_name
         if (dockerImageSecretName != "") {
             podTemplate(containers: [
-                    containerTemplate(name: 'buildkit', image: imageAddress, ttyEnabled: true, privileged: true),
+                    containerTemplate(name: 'buildkit', image: "${imageAddress}", ttyEnabled: true, privileged: true),
             ], volumes: [
                 secretVolume(secretName: dockerImageSecretName, mountPath: '/root/.docker')
             ]) {
@@ -29,7 +29,7 @@ def buildDockerImage(String imageAddress="moby/buildkit:master") {
             }
         } else {
             podTemplate(containers: [
-                    containerTemplate(name: 'buildkit', image: imageAddress, ttyEnabled: true, privileged: true),
+                    containerTemplate(name: 'buildkit', image: "${imageAddress}", ttyEnabled: true, privileged: true),
             ]) {
                 node(POD_LABEL) {
                     container('buildkit') {
