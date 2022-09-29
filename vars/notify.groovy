@@ -40,7 +40,7 @@ def dingding(String statusMessage, String headMessage, Integer _timeout=60){
     }
     timeout(time: _timeout, unit: 'SECONDS') {
              dingtalk (
-              robot: '${robotID}',
+              robot: "${robotID}",
               type: 'MARKDOWN',
               title: "${env.JOB_NAME}[${env.BRANCH_NAME}]构建通知",
               text: [
