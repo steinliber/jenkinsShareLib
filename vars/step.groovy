@@ -10,11 +10,12 @@ def getProject() {
 def buildDockerImage(String imageAddress="moby/buildkit:master") {
     stage("Build Docker image") {
         String dockerImageSecretName = Config.generalSettings.docker_image_auth_secret_name
+        echo "----------> ${dockerImageSecretName}"
         if (dockerImageSecretName != "") {
             podTemplate(containers: [
                     containerTemplate(name: 'buildkit', image: "${imageAddress}", ttyEnabled: true, privileged: true),
             ], volumes: [
-                secretVolume(secretName: dockerImageSecretName, mountPath: '/root/.docker')
+                secretVolume(secretName: "${dockerImageSecretName}", mountPath: '/root/.docker')
             ]) {
                 node(POD_LABEL) {
                     container('buildkit') {
