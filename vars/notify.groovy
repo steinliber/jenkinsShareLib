@@ -29,7 +29,7 @@ input params =>
 statusMessage: dingding status message
 headMessage: dingding head message
 */
-def dingding(String statusMessage, String headMessage, Integer _timeout=60){
+def dingding(String headMessage, String statusMessage, Integer _timeout=60){
     String changeString = getChangeString()
     String buildUser = variable.buildUserName()
     String notifyUser = Config.notifySettings.atUser
