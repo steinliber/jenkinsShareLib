@@ -13,7 +13,11 @@ def testInMaven(String imageAddress="maven:3.8.1-jdk-8") {
                   }
                 }
             }
-            sh 'mvn -B test'
+            container('maven') {
+                stage('run mvn test') {
+                    sh 'mvn -B test'
+                }
+            }
         }
     }
 }
