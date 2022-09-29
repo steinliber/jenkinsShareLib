@@ -1,5 +1,5 @@
 def configImageRepo(Map imageRepoConfig=[:]) {
-    Config.imageRepoConfig = defaultImageRepoSettings() + imageRepoConfig
+    Config.imageRepoSettings = defaultImageRepoSettings() + imageRepoConfig
 }
 
 def configGeneral(Map congfig=[:]) {

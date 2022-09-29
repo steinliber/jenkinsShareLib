@@ -8,10 +8,10 @@ def getProject() {
 
 
 def buildDockerImage(String imageAddress="moby/buildkit:master") {
-    String imageRepository = Config.imageRepoConfig.get("image_repository")
-    String defaultTag = Config.imageRepoConfig.get("defaultTag")
-    String versionMethod = Config.imageRepoConfig.get("versionMethod")
-    String dockerImageSecretName = Config.imageRepoConfig.get("auth_secret_name")
+    String imageRepository = Config.imageRepoSettings.get("image_repository")
+    String defaultTag = Config.imageRepoSettings.get("defaultTag")
+    String versionMethod = Config.imageRepoSettings.get("versionMethod")
+    String dockerImageSecretName = Config.imageRepoSettings.get("auth_secret_name")
     String version = "default_version"
     echo "----------> ${dockerImageSecretName}"
     echo "----------> ${versionMethod}"
