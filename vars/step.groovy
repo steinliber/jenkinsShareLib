@@ -8,12 +8,14 @@ def getProject() {
 
 
 def buildDockerImage(String imageAddress="moby/buildkit:master") {
-    String imageRepository = Config.imageRepoSettings.get("image_repository")
-    if (imageRepository) {
+    String imageRepositoryURL = Config.imageRepoSettings.get("image_repository")
+    if (imageRepositoryURL) {
+        String imageName = Config.imageRepoSettings.get("image_name")
         String defaultTag = Config.imageRepoSettings.get("defaultTag")
         String versionMethod = Config.imageRepoSettings.get("versionMethod")
         String dockerImageSecretName = Config.imageRepoSettings.get("auth_secret_name")
         String version = "default_version"
+        String imageRepository = "${imageRepositoryURL}/${imageName}"
         switch (versionMethod) {
             case "commitID":
                 if (env.GIT_COMMIT) {

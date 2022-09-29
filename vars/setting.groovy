@@ -26,6 +26,7 @@ def defaultSettings() {
 
 def defaultImageRepoSettings() {
     return [
+        image_name: "",
         auth_secret_name: "",
         image_repository: "",
         defaultTag: "latest",
