@@ -24,13 +24,13 @@ def getChangeString() {
     return (changeString)
 }
 
-def notice(robotID,notifyUser,jenkinsURL,branch,jobName,folder,statusMessage,headMessage){
+def notice(String statusMessage, String headMessage){
     String changeString = getChangeString()
     wrap([$class: 'BuildUser']){
          dingtalk (
-          robot: '${robotID}',
+          robot: '${Config.notifySettings.robotID}',
           type: 'MARKDOWN',
-          title: "${jobName}[${branch}]构建通知",
+          title: "${env.JOB_NAME}[${env.BRANCH_NAME}]构建通知",
           text: [
               "# $headMessage",
               "# 构建详情",
@@ -40,10 +40,10 @@ def notice(robotID,notifyUser,jenkinsURL,branch,jobName,folder,statusMessage,hea
               "- 持续时间: ${currentBuild.durationString}",
               "- 构建日志: [日志](${env.BUILD_URL}console)",
               "# Jenkins链接",
-              "[应用Jenkins地址](${jenkinsURL}/${folder}/job/${jobName}/)"
+              "[应用Jenkins地址](${env.JOB_URL})"
 
           ],
-          at: ["${notifyUser}"]
+          at: ["${Config.notifySettings.atUser}"]
         )
     }
 }

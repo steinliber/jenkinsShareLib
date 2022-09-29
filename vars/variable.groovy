@@ -10,3 +10,7 @@ def buildUserName(){
         return BUILD_USER
     }
 }
+
+def jobBuildURL() {
+    return RUN_DISPLAY_URL
+}
