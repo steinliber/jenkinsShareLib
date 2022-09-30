@@ -2,7 +2,9 @@ def mavenTemplate(Closure body) {
     String imageAddress = Config.imageRepoSettings.get("maven_image_repo")
     String mavenContainerName = Config.imageRepoSettings.get("maven_container_name")
     podTemplate(
-        containerTemplate(name: 'maven', image: imageAddress, command: 'sleep', args: '99d'),
+        containers: [
+            containerTemplate(name: 'maven', image: imageAddress, command: 'sleep', args: '99d'),
+        ],
     ) {
     body.call()
 }
