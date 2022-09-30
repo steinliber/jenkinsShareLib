@@ -41,3 +41,22 @@ def aborted() {
         updateGitlabCommitStatus name: 'build', state: 'canceled'
     }
 }
+
+def call() {
+    post {
+        failure {
+          script {
+            post.failure()
+          }
+        }
+        success {
+          script {
+            post.success()
+          }
+        }
+        aborted {
+          script {
+            post.aborted()
+          }
+    }
+}
