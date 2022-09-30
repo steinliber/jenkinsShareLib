@@ -13,7 +13,7 @@ statusMessage: jenkins status message
 headMessage: jenkins head message
 */
 def send(String headMessage, String statusMessage) {
-    def gitUtils = new Utils
+    def gitUtils = new Utils()
     String changeString = gitUtils.getChangeString()
     switch (Config.notifySettings.notifyType) {
         case "dingding":
