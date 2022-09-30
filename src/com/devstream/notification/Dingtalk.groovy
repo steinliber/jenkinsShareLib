@@ -1,6 +1,6 @@
 package com.devstream.notification
 
-def send(changeString, headMessage, statusMessage) {
+def send(changeString, headMessage, statusMessage, Integer _timeout=60) {
     String buildUser = variable.buildUserName()
     String notifyUser = Config.notifySettings.atUser
     String robotID = Config.notifySettings.robotID
