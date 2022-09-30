@@ -12,7 +12,6 @@ def mavenTemplate(Closure body) {
 
 def buildkitTemplate(Closure body) {
     String imageAddress = Config.imageRepoSettings.get("buildkit_image_repo")
-    String imageRepositoryURL = Config.imageRepoSettings.get("image_repository")
     String dockerImageSecretName = Config.imageRepoSettings.get("auth_secret_name")
     String buildkitContainerName = Config.imageRepoSettings.get("buildkit_container_name")
     if (dockerImageSecretName) {

@@ -7,7 +7,12 @@ def buildUserName(){
     }
 }
 
-def isGitRepo() {
+def checkGitRepo() {
     def repoType = Config.generalSettings.get("repo_type")
     return repoType && repoType == "gitlab"
+}
+
+def checkPushImage() {
+    String imageName = Config.imageRepoSettings.get("image_name")
+    return (imageName && imageName != "")
 }
