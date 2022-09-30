@@ -18,7 +18,7 @@ def send(String headMessage, String statusMessage) {
     switch (Config.notifySettings.notifyType) {
         case "dingding":
             dingtalk = new Dingtalk()
-            dingtalk.send(headMessage, statusMessage)
+            dingtalk.send(changeString, headMessage, statusMessage)
             break
         default:
             throw new Exception("jenkins notify type ${Config.notifySettings.notifyType} doesn't support")
