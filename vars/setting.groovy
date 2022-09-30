@@ -28,8 +28,8 @@ def defaultImageRepoSettings() {
         auth_secret_name: "",
         image_repository: "",
         defaultTag: "latest",
-        versionMethod: "commitID"
-        maven_image_repo: "moby/buildkit:master"
+        versionMethod: "commitID",
+        maven_image_repo: "moby/buildkit:master",
     ]
 }
 
