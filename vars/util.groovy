@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
-/* notify.groovy
-This package is used for dingding notification in jenkins pipeline
+/* utils.groovy
+This package is used for utils func
 */
 import com.devstream.notification.Dingtalk
 import com.devstream.git.Utils
