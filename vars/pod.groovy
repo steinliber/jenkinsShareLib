@@ -10,7 +10,9 @@ def call(Closure body) {
         secretVolume(secretName: "${dockerImageSecretName}", mountPath: '/root/.docker')
     ]) {
         node(POD_LABEL) {
-            body()
+            container('maven') {
+                body()
+            }
         }
     }
 }
