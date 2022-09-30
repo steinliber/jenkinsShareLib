@@ -1,14 +1,9 @@
-def entry() {
-	pod.withContainers({
-		stage('Get Project') {
-            checkout scm
-        }
-        stage('Run Maven test') {
-			container('maven') {
-				stage('run mvn test') {
-					sh 'mvn -B test'
-				}
-			}
-        }
-	})
+def testInMaven(String imageAddress="maven:3.8.1-jdk-8") {
+    if (!Config.generalSettings.skip_test) {
+        pod(stage('run mvn test') {
+                checkout scm
+                sh 'mvn -B test'
+            }
+        )
+    }
 }

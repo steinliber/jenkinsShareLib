@@ -3,8 +3,9 @@
 /* notify.groovy
 This package is used for dingding notification in jenkins pipeline
 */
+import com.devstream.notification.Dingtalk
 
-def getChangeString() {
+def _getChangeString() {
     def changeString = ""
     def MAX_MSG_LEN = 10
     def changeLogSets = currentBuild.changeSets
@@ -29,41 +30,13 @@ statusMessage: dingding status message
 headMessage: dingding head message
 */
 def send(String headMessage, String statusMessage) {
+    String changeString = _getChangeString()
     switch (Config.notifySettings.notifyType) {
         case "dingding":
-            dingding(headMessage, statusMessage)
+            dingtalk = new Dingtalk()
+            dingtalk.send(changeString, headMessage, statusMessage)
             break
         default:
             throw new Exception("jenkins notify type ${Config.notifySettings.notifyType} doesn't support")
-    }
-}
-
-def dingding(String headMessage, String statusMessage, Integer _timeout=60){
-    String changeString = getChangeString()
-    String buildUser = variable.buildUserName()
-    String notifyUser = Config.notifySettings.atUser
-    String robotID = Config.notifySettings.robotID
-    List<String> atUsers = [] as String[]
-    if (notifyUser != null && notifyUser != "") {
-        atUsers = notifyUser.split(",") as String[]
-    }
-    timeout(time: _timeout, unit: 'SECONDS') {
-             dingtalk (
-              robot: "${robotID}",
-              type: 'MARKDOWN',
-              title: "${env.JOB_NAME}[${env.BRANCH_NAME}]构建通知",
-              text: [
-                  "# $headMessage",
-                  "# 构建详情",
-                  "- 构建变更: ${changeString}",
-                  "- 构建结果: ${statusMessage}",
-                  "- 构建人: **${buildUser}**",
-                  "- 持续时间: ${currentBuild.durationString}",
-                  "- 构建日志: [日志](${env.BUILD_URL}console)",
-                  "# Jenkins链接",
-                  "[应用Jenkins地址](${env.JOB_URL})"
-              ],
-              at: atUsers
-            )
     }
 }

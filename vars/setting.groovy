@@ -29,7 +29,10 @@ def defaultImageRepoSettings() {
         image_repository: "",
         defaultTag: "latest",
         versionMethod: "commitID",
-        maven_image_repo: "moby/buildkit:master",
+        maven_image_repo: "maven:3.8.1-jdk-8",
+        maven_container_name: "maven",
+        buildkit_image_repo: "moby/buildkit:master",
+        buildkit_container_name: "buildkit",
     ]
 }
 
