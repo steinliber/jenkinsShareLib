@@ -6,3 +6,8 @@ def buildUserName(){
         return BUILD_USER
     }
 }
+
+def isGitRepo() {
+    def repoType = Config.generalSettings.get("repo_type")
+    return repoType && repoType == "gitlab"
+}

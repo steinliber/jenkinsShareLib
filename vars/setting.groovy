@@ -2,8 +2,8 @@ def configImageRepo(Map imageRepoConfig=[:]) {
     Config.imageRepoSettings = defaultImageRepoSettings() + imageRepoConfig
 }
 
-def configGeneral(Map congfig=[:]) {
-    defaultImageRepoSettings()
+def configGeneral(Map config=[:]) {
+    Config.generalSettings = defaultSettings() + config
 }
 
 def configNotifyDingDing(String robotID, String atUser) {
@@ -16,10 +16,8 @@ def configNotifyDingDing(String robotID, String atUser) {
 
 // config default settings
 def defaultSettings() {
-    Config.generalSettings  = [
+    return [
         repo_type: "",
-    ]
-    Config.stepSettings = [
         skip_test: false,
     ]
 }
@@ -31,6 +29,7 @@ def defaultImageRepoSettings() {
         image_repository: "",
         defaultTag: "latest",
         versionMethod: "commitID"
+        maven_image_repo: "moby/buildkit:master"
     ]
 }
 
