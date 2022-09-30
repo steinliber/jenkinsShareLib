@@ -1,3 +1,5 @@
+package com.devstream.git
+
 def getChangeString() {
     def changeString = ""
     def MAX_MSG_LEN = 10
