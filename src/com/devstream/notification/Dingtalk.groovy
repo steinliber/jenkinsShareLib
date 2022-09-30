@@ -1,6 +1,10 @@
 package com.devstream.notification
 
-def send(changeString, headMessage, statusMessage, Integer _timeout=60) {
+import com.devstream.git.Utils
+
+def send(headMessage, statusMessage, Integer _timeout=60) {
+    def gitUtil = new Utils()
+    String changeString = gitUtil.getChangeString()
     String buildUser = variable.buildUserName()
     String notifyUser = Config.notifySettings.atUser
     String robotID = Config.notifySettings.robotID
