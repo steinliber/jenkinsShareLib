@@ -5,7 +5,7 @@ def success() {
     if(Config.notifySettings) {
         String successHeadMsg = "✅✅✅✅✅✅✅✅✅"
         String successStatusMsg = "构建成功✅"
-        notify.send(successHeadMsg, successStatusMsg)
+        util.notify(successHeadMsg, successStatusMsg)
     }
     // config gitlab
     def repoType = Config.generalSettings.get("repo_type")
@@ -19,7 +19,7 @@ def failure() {
     if(Config.notifySettings) {
         String failureHeadMsg = "❌❌❌❌❌❌❌❌❌"
         String failureStatusMsg = "构建失败❌"
-        notify.send(failureHeadMsg, failureStatusMsg)
+        util.notify(failureHeadMsg, failureStatusMsg)
     }
     // config gitlab
     def repoType = Config.generalSettings.get("repo_type")
@@ -33,7 +33,7 @@ def aborted() {
     if(Config.notifySettings) {
         String failureHeadMsg = "🟠🟠🟠🟠🟠🟠🟠"
         String failureStatusMsg = "构建中断🟠"
-        notify.send(failureHeadMsg, failureStatusMsg)
+        util.notify(failureHeadMsg, failureStatusMsg)
     }
     // config gitlab
     def repoType = Config.generalSettings.get("repo_type")
