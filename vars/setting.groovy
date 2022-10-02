@@ -8,7 +8,7 @@ def configGeneral(Map config=[:]) {
     defaultConfig = defaultSettings()
     language = config['language']
     if (!language) {
-        language = defaultSettings['language']
+        language = defaultConfig['language']
     }
     languageConfig = new Language()
     languageDefaultConfig = languageConfig.selector(language)
