@@ -6,7 +6,7 @@ def call(Map config=[:]) {
           steps {
             script {
               echo "Start Run Pipeline..."
-              controller.entry()
+              controller.entry(config)
             }
           }
         }

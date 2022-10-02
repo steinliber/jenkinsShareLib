@@ -1,6 +1,8 @@
 import com.devstream.ci.Pod
 
-def entry() {
+def entry(Map config) {
+    setting.configGeneral(config)
+    println("-------> ${Config.generalSettings.ci_test_container_repo}")
     pod = new Pod()
     pod.testTemplate {
       pod.buildTemplate {
