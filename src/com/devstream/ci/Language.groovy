@@ -27,7 +27,7 @@ def setJavaDefault(String b_file=null){
     }
     // set java container resource
     Config.generalSettings.container_requests_cpu = "1"
-    Config.generalSettings.container_requests_memory = "2Gi",
-    Config.generalSettings.container_limit_cpu = "1",
-    Config.generalSettings.container_limit_memory = "2Gi",
+    Config.generalSettings.container_requests_memory = "2Gi"
+    Config.generalSettings.container_limit_cpu = "1"
+    Config.generalSettings.container_limit_memory = "2Gi"
 }
