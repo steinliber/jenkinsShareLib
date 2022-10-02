@@ -1,7 +1,4 @@
 def call(Map config=[:]) {
-    node {
-        settings.configGeneral(config)
-    }
     pipeline {
       agent any
       stages {
