@@ -5,9 +5,14 @@ def configImageRepo(Map imageRepoConfig=[:]) {
 }
 
 def configGeneral(Map config=[:]) {
+    defaultConfig = defaultSettings()
+    language = config['language']
+    if (!language) {
+        language = defaultSettings['language']
+    }
     languageConfig = new Language()
-    languageDefaultConfig = languageConfig.selector(generalSettings.language)
-    Config.generalSettings = defaultSettings() + languageDefaultConfig + config
+    languageDefaultConfig = languageConfig.selector(language)
+    Config.generalSettings = defaultConfig + languageDefaultConfig + config
 }
 
 def configNotifyDingDing(Map notifyConfig=[:]) {
