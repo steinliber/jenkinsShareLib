@@ -25,12 +25,10 @@ def testCode() {
 
 
 def pushCodeImage() {
-    String imageRepositoryURL = Config.imageRepoSettings.get("image_repository")
-    String imageName = Config.imageRepoSettings.get("image_name")
+    String imageRepo = Config.imageRepoSettings.image_repo
     String defaultTag = Config.imageRepoSettings.get("defaultTag")
     String versionMethod = Config.imageRepoSettings.get("versionMethod")
     String version = "default_version"
-    String imageRepository = "${imageRepositoryURL}/${imageName}"
     String buildContainerName = Config.generalSettings.ci_build_container_name
     switch (versionMethod) {
         case "commitID":
@@ -40,10 +38,10 @@ def pushCodeImage() {
     }
     container(buildContainerName) {
         stage('Build Docker Image') {
-            echo "controller: build and push to ${imageRepository}:${defaultTag} and ${imageRepository}:${version}"
+            echo "controller: build and push to ${imageRepo}:${defaultTag} and ${imageRepository}:${version}"
             sh """
-              buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${imageRepository}:${defaultTag},push=true,registry.insecure=true
-              buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${imageRepository}:${version},push=true,registry.insecure=true
+              buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${imageRepo}:${defaultTag},push=true,registry.insecure=true
+              buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${imageRepo}:${version},push=true,registry.insecure=true
             """
         }
     }
