@@ -4,8 +4,7 @@ def selector(String language){
     // config default options for different language
     switch(language.toLowerCase()){
         case "java":
-            setJavaDefault()
-            break
+            return javaDefault()
         default:
             if (!Config.generalSettings.ci_test_command) {
                 throw new Exception("Language %s language should set ci_test_command and ci_test_options in generalSettings")
@@ -14,19 +13,15 @@ def selector(String language){
 }
 
 
-def setJavaDefault(String b_file=null){
-    if (!Config.generalSettings.ci_test_command) {
-        Config.generalSettings.ci_test_command = "mvn"
-    }
-    if (!Config.generalSettings.ci_test_options) {
-        Config.generalSettings.ci_test_options = "-B test"
-    }
-    if (!Config.generalSettings.ci_test_container_repo) {
-        Config.generalSettings.ci_test_container_repo = "maven:3.8.1-jdk-8"
-    }
-    // set java container resource
-    Config.generalSettings.container_requests_cpu = "1"
-    Config.generalSettings.container_requests_memory = "2Gi"
-    Config.generalSettings.container_limit_cpu = "1"
-    Config.generalSettings.container_limit_memory = "2Gi"
+def javaDefault() {
+    return [
+        ci_test_command: 'mvn',
+        ci_test_options: '-B test',
+        ci_test_container_repo: 'maven:3.8.1-jdk-8',
+        container_requests_cpu: "1",
+        container_requests_memory: "2Gi",
+        container_limit_cpu: "1",
+        container_limit_memory: "2Gi",
+
+    ]
 }

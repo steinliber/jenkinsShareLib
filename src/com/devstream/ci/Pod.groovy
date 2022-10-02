@@ -4,7 +4,7 @@ package com.devstream.ci
 def testTemplate(Closure body) {
     String imageAddress = Config.generalSettings.ci_test_container_repo
     String testContainerName = Config.generalSettings.ci_test_container_name
-    println("-----> ${imageAddress}")
+    println("-----> ${imageAddress}"
     println("-----> ${Config.generalSettings.ci_test_container_repo}")
     if (!Config.generalSettings.skip_test) {
 podTemplate(
