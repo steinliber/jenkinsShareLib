@@ -38,9 +38,9 @@ def defaultSettings() {
         ci_test_command: "",
         ci_test_options: "",
         ci_test_container_repo: "",
-        ci_test_container_name: "testContainer",
+        ci_test_container_name: "test-container",
         ci_build_container_repo: "moby/buildkit:master",
-        ci_build_container_name: "buildContainer",
+        ci_build_container_name: "build-container",
     ]
 }
 
