@@ -24,7 +24,6 @@ def testTemplate(Closure body) {
 
 // buildTemplate is used for config build container
 def buildTemplate(Closure body) {
-    String imageRepositoryURL = Config.imageRepoSettings.get("image_repository")
     String dockerImageSecretName = Config.imageRepoSettings.get("auth_secret_name")
     String imageAddress = Config.generalSettings.ci_build_container_repo
     String containerName = Config.generalSettings.ci_build_container_name

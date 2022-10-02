@@ -38,7 +38,7 @@ def pushCodeImage() {
     }
     container(buildContainerName) {
         stage('Build Docker Image') {
-            echo "controller: build and push to ${imageRepo}:${defaultTag} and ${imageRepository}:${version}"
+            echo "controller: build and push to ${imageRepo}:${defaultTag} and ${imageRepo}:${version}"
             sh """
               buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${imageRepo}:${defaultTag},push=true,registry.insecure=true
               buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${imageRepo}:${version},push=true,registry.insecure=true
