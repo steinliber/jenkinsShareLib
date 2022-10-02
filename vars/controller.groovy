@@ -3,14 +3,12 @@ import com.devstream.ci.Pod
 def entry(Map config) {
     setting.configGeneral(config)
     pod = new Pod()
-    pod.testTemplate {
-      pod.buildTemplate {
-        node(POD_LABEL) {
+    pod.templates {
+      node(POD_LABEL) {
           cloneCode()
           testCode()
           pushCodeImage()
         }
-      }
     }
 }
 
