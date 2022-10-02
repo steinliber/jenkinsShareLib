@@ -4,7 +4,7 @@
 This package is used for utils func
 */
 import com.devstream.notification.Dingtalk
-import com.devstream.git.Utils
+import com.devstream.ci.Git
 
 /*
 send notifucation
@@ -13,7 +13,7 @@ statusMessage: jenkins status message
 headMessage: jenkins head message
 */
 def notify(String headMessage, String statusMessage) {
-    def gitUtils = new Utils()
+    def gitUtils = new Git()
     String changeString = gitUtils.getChangeString()
     switch (Config.notifySettings.notifyType) {
         case "dingding":

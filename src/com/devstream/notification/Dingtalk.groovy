@@ -3,8 +3,8 @@ package com.devstream.notification
 
 def send(changeString, headMessage, statusMessage, Integer _timeout=60) {
     String buildUser = variable.buildUserName()
-    String notifyUser = Config.notifySettings.atUser
-    String robotID = Config.notifySettings.robotID
+    String notifyUser = Config.notifySettings.get("at_user")
+    String robotID = Config.notifySettings.get("robot_id")
     List<String> atUsers = [] as String[]
     if (notifyUser != null && notifyUser != "") {
         atUsers = notifyUser.split(",") as String[]

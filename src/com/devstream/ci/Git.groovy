@@ -1,4 +1,4 @@
-package com.devstream.git
+package com.devstream.ci
 
 def getChangeString() {
     def changeString = ""
