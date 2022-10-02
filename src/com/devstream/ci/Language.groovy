@@ -26,8 +26,8 @@ def setJavaDefault(String b_file=null){
         Config.generalSettings.ci_test_container_repo = "maven:3.8.1-jdk-8"
     }
     // set java container resource
-    Config.generalSettings.container_requests_cpu: "1",
-    Config.generalSettings.container_requests_memory: "2Gi",
-    Config.generalSettings.container_limit_cpu: "1",
-    Config.generalSettings.container_limit_memory: "2Gi",
+    Config.generalSettings.container_requests_cpu = "1"
+    Config.generalSettings.container_requests_memory = "2Gi",
+    Config.generalSettings.container_limit_cpu = "1",
+    Config.generalSettings.container_limit_memory = "2Gi",
 }
