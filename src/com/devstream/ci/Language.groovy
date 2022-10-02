@@ -1,6 +1,6 @@
 package com.devstream.ci
 
-def seletor(String language){
+def selector(String language){
     // config default options for different language
     switch(language.toLowerCase()){
         case "java":
