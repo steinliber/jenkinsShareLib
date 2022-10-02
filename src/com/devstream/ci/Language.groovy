@@ -22,6 +22,5 @@ def javaDefault() {
         container_requests_memory: "2Gi",
         container_limit_cpu: "1",
         container_limit_memory: "2Gi",
-
     ]
 }

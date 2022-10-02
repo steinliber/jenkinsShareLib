@@ -18,11 +18,10 @@ podTemplate(
 
 // buildTemplate is used for config build container
 def buildTemplate(Closure body) {
-    String imageAddress = Config.generalSettings.ci_build_container_repo
     String imageRepositoryURL = Config.imageRepoSettings.get("image_repository")
     String dockerImageSecretName = Config.imageRepoSettings.get("auth_secret_name")
-    String containerName = Config.imageRepoSettings.ci_build_container_name
-    println("----->${containerName} ${imageAddress}")
+    String imageAddress = Config.generalSettings.ci_build_container_repo
+    String containerName = Config.generalSettings.ci_build_container_name
     if (dockerImageSecretName) {
         podTemplate(containers: [
             containerTemplate(name: containerName, image: imageAddress, ttyEnabled: true, privileged: true),

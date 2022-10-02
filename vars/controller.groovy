@@ -33,7 +33,7 @@ def pushCodeImage() {
     String versionMethod = Config.imageRepoSettings.get("versionMethod")
     String version = "default_version"
     String imageRepository = "${imageRepositoryURL}/${imageName}"
-    String buildContainerName = Config.imageRepoSettings.ci_build_container_name
+    String buildContainerName = Config.generalSettings.ci_build_container_name
     switch (versionMethod) {
         case "commitID":
             if (env.GIT_COMMIT) {
