@@ -1,7 +1,11 @@
 import com.devstream.ci.Language
 
 def configImageRepo(Map imageRepoConfig=[:]) {
-    Config.imageRepoSettings = defaultImageRepoSettings() + imageRepoConfig
+   imageRepoSettings = defaultImageRepoSettings() + imageRepoConfig
+   imageRepo = imageRepoSettings.get('image_repo')
+   if (!imageRepo) {
+       throw new Exception("Please set image_repo in configImageRepo")
+   }
 }
 
 def configGeneral(Map config=[:]) {
