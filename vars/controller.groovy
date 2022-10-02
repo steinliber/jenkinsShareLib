@@ -1,13 +1,11 @@
 import com.devstream.ci.Pod
 
 def entry() {
-    Pod.testTemplate {
-      Pod.buildTemplate {
-        node(POD_LABEL) {
-          cloneCode()
-          testCode()
-          pushCodeImage()
-        }
+    Pod.templates {
+      node(POD_LABEL) {
+        cloneCode()
+        testCode()
+        pushCodeImage()
       }
     }
 }

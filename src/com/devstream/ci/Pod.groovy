@@ -12,8 +12,6 @@ def testTemplate(Closure body) {
     ) {
         body.call()
     }
-    } else {
-        body.call()
     }
 }
 
@@ -35,6 +33,20 @@ def buildTemplate(Closure body) {
         podTemplate(containers: [
                 containerTemplate(name: buildContainerName, image: imageAddress, ttyEnabled: true, privileged: true),
         ]) {
+            body.call()
+        }
+    }
+}
+
+def templates(Closure body) {
+    if (!Config.generalSettings.skip_test) {
+        testTemplate {
+            buildTemplate {
+                body.call()
+            }
+        }
+    } else {
+        buildTemplate {
             body.call()
         }
     }
