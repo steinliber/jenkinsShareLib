@@ -5,6 +5,7 @@ def call(Map config=[:]) {
         stage("Run Pipeline") {
           steps {
             script {
+              settings.configGeneral(config)
               echo "Start Run Pipeline..."
               controller.entry()
             }
