@@ -5,7 +5,7 @@ def call() {
         stage("Run Pipeline") {
           steps {
             script {
-              log.info("Start Run Pipeline...")
+              echo "Start Run Pipeline..."
               controller.entry()
             }
           }

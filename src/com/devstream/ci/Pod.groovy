@@ -4,7 +4,6 @@ package com.devstream.ci
 def testTemplate(Closure body) {
     String imageAddress = Config.generalSettings.ci_test_container_repo
     String testContainerName = Config.generalSettings.ci_test_container_name
-    log.info("pod: config test container %{imageAddress}...")
     if !(Config.generalSettings.skip_test) {
     podTemplate(
         containers: [
@@ -24,7 +23,6 @@ def buildTemplate(Closure body) {
     String imageRepositoryURL = Config.imageRepoSettings.get("image_repository")
     String dockerImageSecretName = Config.imageRepoSettings.get("auth_secret_name")
     String buildContainerName = Config.imageRepoSettings.ci_build_container_name
-    log.info("pod: config build container %{imageAddress}...")
     if (dockerImageSecretName) {
         podTemplate(containers: [
             containerTemplate(name: buildContainerName, image: imageAddress, ttyEnabled: true, privileged: true),

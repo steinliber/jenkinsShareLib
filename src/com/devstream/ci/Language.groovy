@@ -15,7 +15,6 @@ def seletor(String language){
 
 
 def setJavaDefault(String b_file=null){
-    log.info 'Preparing to build ' + Config.generalSettings.language.toUpperCase() + ' project.'
     if (!Config.generalSettings.ci_test_command) {
         Config.generalSettings.ci_test_command = "mvn"
     }
