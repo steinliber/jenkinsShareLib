@@ -21,9 +21,11 @@ def setJavaDefault(String b_file=null){
     if (!Config.generalSettings.ci_test_options) {
         Config.generalSettings.ci_test_options = "-B test"
     }
+    println("-----------> %{Config.generalSettings.ci_test_container_repo}")
     if (!Config.generalSettings.ci_test_container_repo) {
         Config.generalSettings.ci_test_container_repo = "maven:3.8.1-jdk-8"
     }
+    println("xxx-----------> %{Config.generalSettings.ci_test_container_repo}")
     // set java container resource
     Config.generalSettings.container_requests_cpu = "1"
     Config.generalSettings.container_requests_memory = "2Gi"
