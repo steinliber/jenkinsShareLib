@@ -27,42 +27,33 @@ def entry() {
 
 def templates(Closure body) {
     def s = Config.generalSettings
-    try {
-      if (!s.test_enable) {
-          if (s.sonarqube_enable) {
-              pod.scannerTemplate {
-                  pod.buildTemplate {
-                      body.call()
-                  }
-              }
-          } else {
-              pod.buildTemplate {
-                  body.call()
-              }
-          }
-      } else {
-          if (s.sonarqube_enable) {
-              pod.testTemplate {
-                  pod.scannerTemplate {
-                      pod.buildTemplate {
-                          body.call()
-                      }
-                  }
-              }
-          } else {
-              pod.testTemplate {
-                  pod.buildTemplate {
-                      body.call()
-                  }
-              }
-          }
-      }
-    } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException err) {
-        post.postResult("aborted")
-        throw err
-    } catch (Exception err) {
-        post.postResult("failure")
-        throw err
+    if (!s.test_enable) {
+        if (s.sonarqube_enable) {
+            pod.scannerTemplate {
+                pod.buildTemplate {
+                    body.call()
+                }
+            }
+        } else {
+            pod.buildTemplate {
+                body.call()
+            }
+        }
+    } else {
+        if (s.sonarqube_enable) {
+            pod.testTemplate {
+                pod.scannerTemplate {
+                    pod.buildTemplate {
+                        body.call()
+                    }
+                }
+            }
+        } else {
+            pod.testTemplate {
+                pod.buildTemplate {
+                    body.call()
+                }
+            }
+        }
     }
-
 }

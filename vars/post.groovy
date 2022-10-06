@@ -1,23 +1,5 @@
 #!/usr/bin/env groovy
 
-def postResult(String status) {
-    node {
-        stage("Post Result") {
-            switch (status) {
-                case "success":
-                    success()
-                    break
-                case "failure":
-                    failure()
-                    break
-                case "aborted":
-                    aborted()
-                    break
-            }
-        }
-    }
-}
-
 def success() {
     // config notify
     if(Config.notifySettings) {
