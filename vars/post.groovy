@@ -3,7 +3,7 @@
 def postResult(String status) {
     node {
         stage("Post Result") {
-            switch status {
+            switch (status) {
                 case "success":
                     success()
                     break
