@@ -47,14 +47,18 @@ def sonarScan() {
     def s = Config.generalSettings
     println("------------> ${s}")
     if (s.sonarqube_enable) {
-        def sonar = new SonarQube()
-        sonar.scanner(
-            s.name,
-            s.language,
-            s.sonarqube_options,
-        )
-        if (s.sonarqube_qualitygate_enable) {
-            sonar.qualityGateStatus()
+        container(s.sonarqube_cli_container_name) {
+            stage('Sonar Scan Code') {
+                def sonar = new SonarQube()
+                sonar.scanner(
+                    s.name,
+                    s.language,
+                    s.sonarqube_options,
+                )
+                if (s.sonarqube_qualitygate_enable) {
+                    sonar.qualityGateStatus()
+                }
+            }
         }
     }
 }
