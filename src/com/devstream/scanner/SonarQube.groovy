@@ -33,7 +33,7 @@ def scanner(
 
 def qualityGateStatus(){
     try {
-        timeout(time: 20, unit: 'MINUTES') {
+        timeout(time: Config.generalSettings.sonarqube_timeout_minutes, unit: 'MINUTES') {
             def qg_stats = waitForQualityGate()
             if (qg_stats.status != 'SUCCESS') {
                 println('Error: Pipeline aborted due to quality gate failure: ' + qg.stats)

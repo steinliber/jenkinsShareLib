@@ -44,13 +44,16 @@ def defaultSettings() {
         ci_test_command: "",
         ci_test_options: "",
         ci_test_container_repo: "",
+        ci_test_timeout_minutes: 20,
         ci_test_container_name: "test-container",
         ci_build_container_repo: "moby/buildkit:master",
         ci_build_container_name: "build-container",
+        ci_build_timeout_minutes: 20,
         // sonar related config
         sonarqube_enable: false,
         sonarqube_options: "",
         sonarqube_qualitygate_enable: true,
+        sonarqube_timeout_minutes: 20,
         sonarqube_cli_container_repo: "sonarsource/sonar-scanner-cli:latest",
         sonarqube_cli_container_name: "scanner-sonar-container",
     ]
