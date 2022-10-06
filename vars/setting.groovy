@@ -51,6 +51,8 @@ def defaultSettings() {
         sonarqube_enable: false,
         sonarqube_options: "",
         sonarqube_qualitygate_enable: true,
+        sonarqube_cli_container_repo: "sonarsource/sonar-scanner-cli:latest"
+        sonarqube_cli_container_name: "scanner-sonar-container"
     ]
 }
 

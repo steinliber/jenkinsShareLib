@@ -1,20 +1,20 @@
 def call(Map config=[:]) {
-  setting.configGeneral(config)
-  util.templates {
-    node(POD_LABEL) {
-      try {
-        controller.cloneCode()
-        controller.testCode()
-        controller.sonarScan()
-        controller.pushCodeImage()
-      } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException err) {
-          post.aborted()
-          throw err
-      } catch (Exception err) {
-          post.failure()
-          throw err
-      }
-      post.success()
+    try {
+        setting.configGeneral(config)
+        pod.templates {
+            node(POD_LABEL) {
+                controller.cloneCode()
+                controller.testCode()
+                controller.sonarScan()
+                controller.pushCodeImage()
+            }
+        }
+    } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException err) {
+        post.postResult("aborted")
+        throw err
+    } catch (Exception err) {
+        post.postResult("failure")
+        throw err
     }
-  }
+    post.postResult("success")
 }
