@@ -32,6 +32,7 @@ def configNotifyDingDing(Map notifyConfig=[:]) {
 def defaultSettings() {
     return [
         repo_type: "",
+        name: "",
         language: "java",
         // container resource for podTemplate
         container_requests_cpu: "0.3",
@@ -46,6 +47,10 @@ def defaultSettings() {
         ci_test_container_name: "test-container",
         ci_build_container_repo: "moby/buildkit:master",
         ci_build_container_name: "build-container",
+        // sonar related config
+        sonarqube_enable: false,
+        sonarqube_options: "",
+        sonarqube_qualitygate_enable: true,
     ]
 }
 

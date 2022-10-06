@@ -1,4 +1,5 @@
 import com.devstream.ci.Pod
+import com.devstream.scanner.SonarQube
 
 def entry(Map config) {
     setting.configGeneral(config)
@@ -25,7 +26,7 @@ def testCode() {
 
 
 def pushCodeImage() {
-    String imageRepo = Config.imageRepoSettings.image_repo
+    String imageRepo = "${Config.imageRepoSettings.image_repo}/${Config.imageRepoSettings.name}"
     String defaultTag = Config.imageRepoSettings.get("defaultTag")
     String versionMethod = Config.imageRepoSettings.get("versionMethod")
     String version = "default_version"
@@ -51,5 +52,21 @@ def pushCodeImage() {
 def cloneCode() {
     stage("Get Project") {
         checkout scm
+    }
+}
+
+def sonarScan() {
+    def s = Config.generalSettings
+    if (s.sonar_enable) {
+        def sonar = new SonarQube()
+        sonar.scanner(
+            s.name,
+            env.GIT_COMMIT.substring(0, 8),
+            s.language,
+            s.sonarqube_options,
+        )
+        if (s.sonarqube_qualitygate_enable) {
+            sonar.qualityGateStatus()
+        }
     }
 }

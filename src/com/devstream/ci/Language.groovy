@@ -18,9 +18,9 @@ def javaDefault() {
         ci_test_command: 'mvn',
         ci_test_options: '-B test',
         ci_test_container_repo: 'maven:3.8.1-jdk-8',
-        container_requests_cpu: "1",
+        container_requests_cpu: "512m",
         container_requests_memory: "2Gi",
-        container_limit_cpu: "1",
+        container_limit_cpu: "512m",
         container_limit_memory: "2Gi",
     ]
 }
