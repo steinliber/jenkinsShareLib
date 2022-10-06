@@ -10,8 +10,8 @@ def entry() {
         try {
             controller.cloneCode()
             parallel(
-                'Test': controller.testCode,
-                'Sonar Scan': controller.sonarScan,
+                'Test': controller.testCode(),
+                'Sonar Scan': controller.sonarScan(),
             )
             controller.pushCodeImage()
             post.success()
