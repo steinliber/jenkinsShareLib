@@ -4,7 +4,7 @@ import com.devstream.ci.Git
 
 def testCode() {
     private testCommand = Config.generalSettings.ci_test_command + ' ' + Config.generalSettings.ci_test_options
-    if (!Config.generalSettings.skip_test) {
+    if (Config.generalSettings.test_enable) {
         container(Config.generalSettings.ci_test_container_name) {
             stage('Run Test') {
                 sh testCommand

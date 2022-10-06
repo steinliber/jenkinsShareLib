@@ -3,18 +3,16 @@
 def postResult(String status) {
     node {
         stage("Post Result") {
-            steps {
-                switch status {
-                    case "success":
-                        success()
-                        break
-                    case "failure":
-                        failure()
-                        break
-                    case "aborted":
-                        aborted()
-                        break
-                }
+            switch status {
+                case "success":
+                    success()
+                    break
+                case "failure":
+                    failure()
+                    break
+                case "aborted":
+                    aborted()
+                    break
             }
         }
     }

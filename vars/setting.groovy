@@ -40,7 +40,7 @@ def defaultSettings() {
         container_limit_cpu: "1",
         container_limit_memory: "2Gi",
         // ci related config
-        skip_test: false,
+        test_enable: true,
         ci_test_command: "",
         ci_test_options: "",
         ci_test_container_repo: "",
