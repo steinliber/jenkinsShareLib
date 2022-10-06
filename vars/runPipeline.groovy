@@ -9,8 +9,10 @@ def entry() {
     node(POD_LABEL) {
         try {
             controller.cloneCode()
-            controller.testCode()
-            controller.sonarScan()
+            parallel(
+                'Test': controller.testCode,
+                'Sonar Scan': controller.sonarScan,
+            )
             controller.pushCodeImage()
             post.success()
         } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException err) {
