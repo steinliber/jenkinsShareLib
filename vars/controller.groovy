@@ -1,4 +1,3 @@
-import com.devstream.ci.Pod
 import com.devstream.scanner.SonarQube
 
 def testCode() {
