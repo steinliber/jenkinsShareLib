@@ -81,36 +81,3 @@ def scannerTemplate(Closure body) {
         body.call()
     }
 }
-
-def templates(Closure body) {
-    def s = Config.generalSettings
-    if (!s.test_enable) {
-        if (s.sonarqube_enable) {
-            scannerTemplate {
-                buildTemplate {
-                    body.call()
-                }
-            }
-        } else {
-            buildTemplate {
-                body.call()
-            }
-        }
-    } else {
-        if (s.sonarqube_enable) {
-            testTemplate {
-                scannerTemplate {
-                    buildTemplate {
-                        body.call()
-                    }
-                }
-            }
-        } else {
-            testTemplate {
-                buildTemplate {
-                    body.call()
-                }
-            }
-        }
-    }
-}
