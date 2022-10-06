@@ -6,7 +6,7 @@ def scanner(
     String lang,
     String options='') {
     try {
-        log.i 'Preparing SonarQube Scanner'
+        println('Info: Preparing SonarQube Scanner')
         withSonarQubeEnv(){
             def private opts
 
@@ -23,7 +23,7 @@ def scanner(
         }
     }
     catch (e) {
-        println('Errror: Failed with SonarQube Scanner')
+        println('Error: Failed with SonarQube Scanner')
         throw e
     }
 }

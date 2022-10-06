@@ -1,32 +1,21 @@
 def call(Map config=[:]) {
-    pipeline {
-      agent any
-      stages {
-        stage("Run Pipeline") {
-          steps {
-            script {
-              echo "Start Run Pipeline..."
-              controller.entry(config)
-            }
-          }
-        }
-      }
-      post {
-        failure {
-          script {
-            post.failure()
-          }
-        }
-        success {
-          script {
-            post.success()
-          }
-        }
-        aborted {
-          script {
-            post.aborted()
-          }
-        }
+  try {
+    setting.configGeneral(config)
+    pod = new Pod()
+    pod.templates {
+      node(POD_LABEL) {
+          controller.cloneCode()
+          controller.testCode()
+          controller.sonarScan()
+          controller.pushCodeImage()
       }
     }
+  } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException err) {
+      post.aborted()
+      throw err
+  } catch (Exception err) {
+      post.failure()
+      throw err
+  }
+  post.success()
 }

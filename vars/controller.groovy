@@ -1,19 +1,6 @@
 import com.devstream.ci.Pod
 import com.devstream.scanner.SonarQube
 
-def entry(Map config) {
-    setting.configGeneral(config)
-    pod = new Pod()
-    pod.templates {
-      node(POD_LABEL) {
-          cloneCode()
-          testCode()
-          sonarScan()
-          pushCodeImage()
-        }
-    }
-}
-
 def testCode() {
     private testCommand = Config.generalSettings.ci_test_command + ' ' + Config.generalSettings.ci_test_options
     if (!Config.generalSettings.skip_test) {
