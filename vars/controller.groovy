@@ -1,4 +1,6 @@
 import com.devstream.scanner.SonarQube
+import com.devstream.ci.Git
+
 
 def testCode() {
     private testCommand = Config.generalSettings.ci_test_command + ' ' + Config.generalSettings.ci_test_options
@@ -20,9 +22,8 @@ def pushCodeImage() {
     String buildContainerName = Config.generalSettings.ci_build_container_name
     switch (versionMethod) {
         case "commitID":
-            if (env.GIT_COMMIT) {
-                version = env.GIT_COMMIT.substring(0, 8)
-            }
+            gitUtil = new Git()
+            version = gitUtil.getCommitIDHead()
     }
     container(buildContainerName) {
         stage('Build Docker Image') {
@@ -49,7 +50,6 @@ def sonarScan() {
         def sonar = new SonarQube()
         sonar.scanner(
             s.name,
-            env.GIT_COMMIT.substring(0, 8),
             s.language,
             s.sonarqube_options,
         )

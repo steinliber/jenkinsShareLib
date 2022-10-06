@@ -1,12 +1,15 @@
 package com.devstream.scanner
 
+import com.devstream.ci.Git
+
 def scanner(
     String name,
-    String version,
     String lang,
     String options='') {
     try {
         println('Info: Preparing SonarQube Scanner')
+        gitUtil = new Git()
+        version = gitUtil.getCommitIDHead()
         withSonarQubeEnv(){
             def private opts
 

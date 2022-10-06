@@ -18,3 +18,14 @@ def getChangeString() {
     }
     return (changeString)
 }
+
+def getCommitIDHead() {
+    String gitCommit
+    if (env.GIT_COMMIT) {
+        gitCommit = env.GIT_COMMIT.substring(0, 8)
+    } else {
+        String gitCommitLang = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
+        gitCommit = gitCommitLang.substring(0, 8)
+    }
+    return gitCommit
+}
