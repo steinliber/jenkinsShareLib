@@ -20,7 +20,7 @@ def scanner(
             opts += ' -Dsonar.projectBaseDir=.'
             opts += ' -Dsonar.sources=.'
             opts += ' -Dsonar.java.binaries=.'
-            sonar_exec  = cmd + opts + ' ' + options
+            sonar_exec  = 'sonar-scanner' + opts + ' ' + options
 
             sh(sonar_exec)
         }
