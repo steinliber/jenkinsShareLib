@@ -24,6 +24,7 @@ def getCommitIDHead() {
     if (env.GIT_COMMIT) {
         gitCommit = env.GIT_COMMIT.substring(0, 8)
     } else {
+        sh "printenv"
         String gitCommitLang = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
         gitCommit = gitCommitLang.substring(0, 8)
     }
