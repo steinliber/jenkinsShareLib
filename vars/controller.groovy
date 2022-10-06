@@ -8,6 +8,7 @@ def entry(Map config) {
       node(POD_LABEL) {
           cloneCode()
           testCode()
+          sonarScan()
           pushCodeImage()
         }
     }
