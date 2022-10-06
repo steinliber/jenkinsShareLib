@@ -22,10 +22,10 @@ def entry() {
             controller.pushCodeImage()
             post.postResult("success")
         } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException err) {
-            println(err.getMessage())
+            println(err.toString())
             post.aborted()
         } catch (Exception err) {
-            println(err.getMessage())
+            println(err.toString())
             post.failure()
         }
     }
