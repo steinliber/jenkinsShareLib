@@ -27,7 +27,7 @@ def testCode() {
 
 
 def pushCodeImage() {
-    String imageRepo = "${Config.imageRepoSettings.image_repo}/${Config.imageRepoSettings.name}"
+    String imageRepo = "${Config.imageRepoSettings.image_repo}/${Config.generalSettings.name}"
     String defaultTag = Config.imageRepoSettings.get("defaultTag")
     String versionMethod = Config.imageRepoSettings.get("versionMethod")
     String version = "default_version"
@@ -58,7 +58,8 @@ def cloneCode() {
 
 def sonarScan() {
     def s = Config.generalSettings
-    if (s.sonar_enable) {
+    println("------------> ${s}")
+    if (s.sonarqube_enable) {
         def sonar = new SonarQube()
         sonar.scanner(
             s.name,
