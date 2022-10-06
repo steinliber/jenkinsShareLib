@@ -1,8 +1,7 @@
 def call(Map config=[:]) {
   try {
     setting.configGeneral(config)
-    pod = new Pod()
-    pod.templates {
+    util.templates {
       node(POD_LABEL) {
           controller.cloneCode()
           controller.testCode()
